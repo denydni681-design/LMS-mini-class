@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RuangKelas | Mini LMS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="toast"></div>
+
+<!-- LOGIN -->
+<section id="loginPage" class="login-page">
+  <div class="login-decoration"></div>
+  <div class="login-card">
+    <div class="brand large"><span class="brand-mark">RK</span><span>RuangKelas</span></div>
+    <p class="eyebrow">MINI LEARNING MANAGEMENT SYSTEM</p>
+    <h1>Selamat datang 👋</h1>
+    <p class="muted">Portal interaksi dua arah untuk mahasiswa dan dosen.</p>
+
+    <form id="loginForm">
+      <label>Nama / Username</label>
+      <input id="loginName" required placeholder="Contoh: Nur Lutfia">
+
+      <label>Password</label>
+      <input id="loginPassword" type="password" required placeholder="Masukkan password">
+
+      <label>Masuk sebagai</label>
+      <div class="role-switch">
+        <label class="role-option"><input type="radio" name="role" value="mahasiswa" checked><span>🎓 Mahasiswa</span></label>
+        <label class="role-option"><input type="radio" name="role" value="dosen"><span>👨‍🏫 Dosen</span></label>
+      </div>
+
+      <button class="btn primary full" type="submit">Masuk ke RuangKelas</button>
+    </form>
+    <div class="demo-note">Demo: username dan password bebas diisi.</div>
+  </div>
+</section>
+
+<!-- APP -->
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">RK</span><span>RuangKelas</span></div>
+
+    <div class="profile">
+      <div class="avatar" id="avatar">N</div>
+      <div><strong id="profileName">Mahasiswa</strong><small id="profileRole">Mahasiswa</small></div>
+    </div>
+
+    <nav id="sidebarNav"></nav>
+    <button class="nav-btn logout" id="logoutBtn">↪ Keluar</button>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="mobileMenu">☰</button>
+      <div>
+        <div class="eyebrow">RUANGKELAS</div>
+        <h2 id="pageTitle">Dashboard</h2>
+      </div>
+      <div class="top-actions">
+        <span id="currentDate"></span>
+        <button class="icon-btn" id="notifBtn" title="Notifikasi">🔔</button>
+      </div>
+    </header>
+
+    <div class="page" id="pageContent"></div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop hidden" id="modalBackdrop">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
