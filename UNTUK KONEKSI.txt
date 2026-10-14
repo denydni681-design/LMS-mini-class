@@ -1,0 +1,3 @@
+cd "C:\Users\Admin\Documents\pppp\pppp"
+npm install
+npm start

@@ -1,48 +1,68 @@
-# RuangKelas - Mini LMS Lengkap
+# RuangKelas MySQL
 
-Prototype frontend lengkap untuk Final Project Implementasi dan Pengujian Perangkat Lunak.
+Proyek ini sudah dibuat dengan struktur relasi antar tabel untuk data mahasiswa dan dosen, lalu dihubungkan ke MySQL.
 
-## Role
-- Mahasiswa
-- Dosen
+## Struktur relasi
+- mahasiswa
+- dosen
+- matakuliah
+- mahasiswa_dosen
 
-## Fitur
-### Mahasiswa
-- Login
-- Dashboard
-- Melihat mata kuliah
-- Melihat materi
-- Melihat tugas
-- Mengumpulkan tugas
-- Melihat nilai dan feedback
-- Melihat pengumuman
-- Logout
+Hubungan yang dibuat adalah:
+- satu mahasiswa bisa memiliki banyak dosen
+- satu dosen bisa membimbing banyak mahasiswa
+- satu mahasiswa bisa mengambil banyak mata kuliah
+- satu dosen bisa mengampu beberapa mata kuliah
 
-### Dosen
-- Login
-- Dashboard
-- Kelola mata kuliah (tambah/edit/hapus)
-- Kelola materi (tambah/edit/hapus)
-- Kelola tugas (tambah/edit/hapus)
-- Kelola nilai
-- Kelola pengumuman (tambah/edit/hapus)
-- Logout
+## File penting
+- `db/schema.sql` : skrip pembuatan database dan tabel
+- `server.js` : server Node.js yang terhubung ke MySQL
+- `.env.example` : contoh konfigurasi database
+- `package.json` : dependency project
 
-## Menjalankan
-1. Ekstrak ZIP.
-2. Buka `index.html` di browser.
-3. Isi username/password bebas.
-4. Pilih role Mahasiswa atau Dosen.
+## Persiapan MySQL
+1. Pastikan MySQL sudah aktif di komputer Anda.
+2. Buat database atau jalankan file SQL:
+   ```bash
+   mysql -u root -p < db/schema.sql
+   ```
+3. Salin file `.env.example` menjadi `.env` dan sesuaikan konfigurasi:
+   ```bash
+   copy .env.example .env
+   ```
+4. Ubah nilai sesuai server MySQL Anda:
+   ```env
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_USER=root
+   DB_PASSWORD=your_password
+   DB_NAME=kampus_db
+   PORT=3000
+   ```
 
-## Catatan penting
-Versi ini adalah frontend/prototype yang menggunakan localStorage browser. Jadi data belum menjadi database bersama dan belum aman untuk deployment produksi.
+## Menjalankan server
+```bash
+npm install
+npm start
+```
 
-Untuk versi final sesuai rencana kelompok:
-Frontend -> Laravel Blade/HTML/CSS/JS
-Backend -> Laravel/PHP (OOP)
-Database -> MySQL
-Authentication -> Laravel Auth
-File upload -> storage/server
-Testing -> Black-box + test case + bug report
+Setelah server berjalan, cek endpoint:
+- http://localhost:3000/api/health
+- http://localhost:3000/api/mahasiswa
+- http://localhost:3000/api/dosen
 
-Struktur data dan alur fitur sengaja dibuat agar mudah dipindahkan ke Laravel + MySQL.
+## Endpoint utama
+- GET /api/mahasiswa
+- GET /api/dosen
+- GET /api/mahasiswa/:id/dosen
+- GET /api/dosen/:id/mahasiswa
+- POST /api/mahasiswa
+- POST /api/dosen
+- POST /api/mahasiswa/:id/dosen
+
+## Contoh relasi
+Contoh data yang sudah dibuat:
+- Rina Amelia dibimbing oleh Dr. Siti Rahma dan Budi Santoso
+- Dedi Pratama dibimbing oleh Dr. Siti Rahma
+
+Ini menunjukkan koneksi data mahasiswa dan dosen yang tersimpan di MySQL.
